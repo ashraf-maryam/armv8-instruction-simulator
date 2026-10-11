@@ -1,0 +1,6 @@
+build/
+cmake-build-*/
+.idea/
+.DS_Store
+*.o
+armv8-sim
