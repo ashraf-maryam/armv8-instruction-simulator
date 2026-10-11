@@ -1,0 +1,27 @@
+# N at 100, result at 120
+100  5
+120  0
+
+# main
+200  LDUR X0, [XZR, #100]
+204  BL   300
+208  STUR X0, [XZR, #120]
+212  BR   XZR
+
+# sum(n): arg in X0, return in X0
+300  CBZ  X0, 336
+304  SUBI SP, SP, #8
+308  STUR X30, [SP, #0]
+
+312  ADDI X1, X0, #0
+316  SUBI X0, X0, #1
+320  BL   300
+
+324  ADD  X0, X0, X1
+
+328  LDUR X30, [SP, #0]
+332  ADDI SP, SP, #8
+334  BR   X30
+
+336  ADDI X0, XZR, #0
+340  BR   X30
